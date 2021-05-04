@@ -1,7 +1,8 @@
 # Backend APIs provided for you:
 possibility to sent request to get the authors and hashes of most recent N commits for
 the top M repositories by star count in a language 
-N, M can be any natural numbers in range [1..100]
+N, M can be any natural numbers, in case if N, M out of range [1..100] it will recalculate on how many pages
+should be provided and in a loop requested next page.
 ## Request API End pont 
 send request to http://localhost:8080/api with parameters numRepos(M),numCommits (N), and language
 
