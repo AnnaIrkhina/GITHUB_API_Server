@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve ./public",
+    "api-server": "node server.js"
+  },
+  "engines": {
+    "node": ">=7.0.0"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "serve": "^3.1.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.168",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "lodash.get": "^4.4.2",
+    "shortid": "^2.2.8"
+  }
+}
