@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serve ./public",
-    "api-server": "node server.js"
+    "api-server": "node server.js -r dotenv/config"
   },
   "engines": {
     "node": ">=7.0.0"
@@ -22,6 +22,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.168",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.21",
     "lodash.get": "^4.4.2",
     "shortid": "^2.2.8"

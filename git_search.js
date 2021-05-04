@@ -1,4 +1,9 @@
 import axios from "axios";
+import dotenv from 'dotenv'
+dotenv.config('/.env')
+
+const TOKEN = process.env['TOKEN'];
+
 
 //const {get} = require('lodash').default;
 function parameterValidator(numRepos, numCommits, language){
@@ -32,8 +37,9 @@ function makeGitHubAPIRequest(url, params)
 }
 
 function requestRepoParams(language, per_page, page){
+    console.log('TOKEN', TOKEN)
     return {
-        headers: {Authorization: 'token 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'},
+        headers: {Authorization: `token ${TOKEN}`},
         params: {
             q: `language:${language}`,
             sort: 'stars',
@@ -43,9 +49,9 @@ function requestRepoParams(language, per_page, page){
     }
 }
 function requestCommitParams(per_page, page){
-
+//  secretAccessKey: process.env.AWS_SECRET_KEY,
     return  {
-        headers: {Authorization: 'token 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'},
+        headers: {Authorization: `token ${TOKEN}`},
         params: {
             sort: 'committer-date',
             page: page,
@@ -60,13 +66,17 @@ function requestCommitParams(per_page, page){
 
     console.log('pager.pages', pager.pages);
     for(let i = 1; i <= pager.pages; i++) {
-        const commitsData = await makeGitHubAPIRequest(url, requestCommitParams(pager.per_page, i));
+        const params = requestCommitParams(pager.per_page, i);
+        console.log(params);
+        const commitsData = await makeGitHubAPIRequest(url, );
         if (!commitsData || !commitsData.hasOwnProperty("data")) {
             // console.log(repoRes);
             return (commitsData);
         } else {
             commitsData.data.map(commit => {
-                const {sha, login} = commit;
+                const {sha, author} = commit;
+                const {login} = author;
+                console.log(commit);
                 authors.push({Name: login, commit_hash: sha});
             })
         }
@@ -94,7 +104,7 @@ export default async function makeRepoRequest(numRepos, numCommits, language) {
         if(!repoRes ||!repoRes.hasOwnProperty("data") || !repoRes.data.hasOwnProperty("items") ){
            // console.log(repoRes);
 
-            return(repoRes.error.response.statusText);
+            return(repoRes.error);
         }
         else{
             repoRes.data.items.map(repo=>{
