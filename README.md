@@ -1,4 +1,9 @@
 # Backend APIs provided for you:
+to run this project you need to create file .env and put there token information
+like 
+TOKEN=ghp_XXXXXXX 
+token you should get from github in settings.
+run npm install, and you are all set, 
 You can run `npm run api-server` to start it. 
 
 possibility to sent request to get the authors and hashes of most recent N commits for
